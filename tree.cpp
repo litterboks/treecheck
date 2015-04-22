@@ -1,13 +1,11 @@
 #include "tree.h"
 #include <algorithm>
-#include <iomanip>
 
 Node::Node(int value)
 {
 	this->value = value;
 }
 
-Tree::Tree() {}
 Tree::~Tree() {}
 
 Node* Tree::insertInner(int value, Node* node)
@@ -36,12 +34,15 @@ int Tree::printBalance(Node* node)
 	} else {
 		int depthRight = printBalance(node->right);
 		int depthLeft = printBalance(node->left);
+
 		int bal = depthRight - depthLeft;
 		std::cout << "bal (" << node->value << ") = " << bal;
+
 		if (!(-1 <= bal && bal <= 1)) {
 			std::cout << " (AVL Violation)";
 			AVLflag = false;
 		}
+
 		std::cout << std::endl;
 		return 1 + std::max(depthLeft, depthRight);
 	}
@@ -68,12 +69,14 @@ int Tree::getMax(Node* node) const
 int Tree::sumValues(Node* node, int &count) const
 {
 	int sum = 0;
+
 	if (node->left != NULL) {
 		sum += sumValues(node->left, count);
 	}
 	if (node->right != NULL) {
 		sum += sumValues(node->right, count);
 	}
+
 	count++;
 	return sum + node->value;
 }
@@ -82,8 +85,8 @@ double Tree::getAverage(Node* node) const
 {
 	int sum = 0;
 	int count = 0;
-	sum=sumValues(root, count);
-	return (double)sum/count;
+	sum = sumValues(root, count);
+	return (double)sum / count;
 }
 
 void Tree::printTree()
@@ -92,14 +95,15 @@ void Tree::printTree()
 		std::cout << "Nothing has been inserted!" << std::endl;
 	} else {
 		printBalance(root);
-		//printIsAv
+
 		std::cout << "AVL: ";
-		if (AVLflag == true) {
+		if (AVLflag) {
 			std::cout << "yes";
 		} else {
 			std::cout << "no";
 		}
 		std::cout << std::endl;
+
 		std::cout << "min: " << getMin(root);
 		std::cout << ", max: " << getMax(root);
 		std::cout << ", avg: " << getAverage(root) << std::endl;
