@@ -8,11 +8,11 @@ int main()
 	int in;
 	while (true) {
 		std::cin >> in;
-		if(std::cin.fail()) {
+		if (std::cin.fail()) {
 			break;
 		}
-		
-		t.insertTree(in);
+
+		t.insert(in);
 	}
 
 	t.printTree();
