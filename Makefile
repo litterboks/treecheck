@@ -6,11 +6,14 @@ EXECUTABLE = treecheck
 # Build
 ###############################
 
-all: treecheck.o
+all: treecheck.o tree.o
 	${CC} ${CXXFLAGS} -o ${EXECUTABLE} $^
 
-treecheck.o: treecheck.cpp 
+treecheck.o: treecheck.cpp tree.h
 	${CC} ${CXXFLAGS} -c treecheck.cpp
+
+tree.o: tree.cpp tree.h
+	${CC} ${CXXFLAGS} -c tree.cpp
 
 ############################### 
 # Misc
