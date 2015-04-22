@@ -4,6 +4,7 @@
 int main()
 {
 	Tree t;
+	//TODO: read from file instead
 
 	int in;
 	while (true) {
