@@ -1,21 +1,21 @@
 #include <iostream>
-//#include "tree.h"
+#include "tree.h"
 
 int main()
 {
+	Tree t;
+
 	int in;
 	while (true) {
 		std::cin >> in;
 		if(std::cin.fail()) {
 			break;
 		}
-
-		//insert
-
-		std::cout << in << std::endl;
+		
+		t.insertTree(in);
 	}
 
-	//print
+	t.printTree();
 
 	return 0;
 }
