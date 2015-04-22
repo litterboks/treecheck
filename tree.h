@@ -4,7 +4,7 @@ class Node
 {
 public:
 	Node(int value);
-	
+
 	int value;
 	Node* left = NULL;
 	Node* right = NULL;
@@ -22,6 +22,6 @@ public:
 private:
 	Node* insertInner(int value, Node* node);
 	Node* root = NULL;
-	int printBalance(Node* node) const; 
+	int printBalance(Node* node) const;
 };
 
