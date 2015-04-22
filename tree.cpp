@@ -7,8 +7,18 @@ Node::Node(int value)
 	this->value = value;
 }
 
+void deleteNodes(Node* node){
+	if (node!=NULL){
+	deleteNodes(node->left);
+	deleteNodes(node->right);
+	delete node;
+	}
+}
+
 Tree::Tree() {}
-Tree::~Tree() {}
+Tree::~Tree() {
+	deleteNodes(root);
+}
 
 Node* Tree::insertInner(int value, Node* node)
 {
