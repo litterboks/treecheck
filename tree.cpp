@@ -41,8 +41,39 @@ int Tree::printBalance(Node* node) const
 	}
 }
 
+int getMin(Node* node)
+{
+	if (node->left == NULL) {
+		return node->value;
+	} else {
+		return getMin(node->left);
+	}
+}
+
+int getMax(Node* node)
+{
+	if (node->right == NULL) {
+		return node->value;
+	} else {
+		return getMax(node->right);
+	}
+}
+
+double getAverage(Node* nod)
+{
+	return 100;
+}
+
 void Tree::printTree() const
 {
-	printBalance(root);
+	if (root == NULL) {
+		std::cout << "Nothing has been inserted!" << std::endl;
+	} else {
+		printBalance(root);
+		//printIsAvl
+		std::cout << "min: " << getMin(root);
+		std::cout << ", max: " << getMax(root);
+		std::cout << ", avg: " << getAverage(root) << std::endl;
+	}
 }
 
