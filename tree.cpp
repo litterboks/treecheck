@@ -1,5 +1,6 @@
 #include "tree.h"
 #include <algorithm>
+#include <iomanip>
 
 Node::Node(int value)
 {
@@ -46,7 +47,7 @@ int Tree::printBalance(Node* node)
 	}
 }
 
-int getMin(Node* node)
+int Tree::getMin(Node* node) const
 {
 	if (node->left == NULL) {
 		return node->value;
@@ -55,7 +56,7 @@ int getMin(Node* node)
 	}
 }
 
-int getMax(Node* node)
+int Tree::getMax(Node* node) const
 {
 	if (node->right == NULL) {
 		return node->value;
@@ -64,9 +65,25 @@ int getMax(Node* node)
 	}
 }
 
-double getAverage(Node* nod)
+int Tree::sumValues(Node* node, int &count) const
 {
-	return 100;
+	int sum = 0;
+	if (node->left != NULL) {
+		sum += sumValues(node->left, count);
+	}
+	if (node->right != NULL) {
+		sum += sumValues(node->right, count);
+	}
+	count++;
+	return sum + node->value;
+}
+
+double Tree::getAverage(Node* node) const
+{
+	int sum = 0;
+	int count = 0;
+	sum=sumValues(root, count);
+	return (double)sum/count;
 }
 
 void Tree::printTree()
@@ -77,10 +94,9 @@ void Tree::printTree()
 		printBalance(root);
 		//printIsAv
 		std::cout << "AVL: ";
-		if(AVLflag==true){
+		if (AVLflag == true) {
 			std::cout << "yes";
-		}
-		else{
+		} else {
 			std::cout << "no";
 		}
 		std::cout << std::endl;
@@ -89,6 +105,5 @@ void Tree::printTree()
 		std::cout << ", avg: " << getAverage(root) << std::endl;
 	}
 }
-
 
 
