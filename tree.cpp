@@ -1,46 +1,48 @@
 #include "tree.h"
+#include <algorithm>
 
-Node::Node(int number)
+Node::Node(int value)
 {
-	this->number = number;
-}
-
-Node::~Node(){}
-
-int Node::getNumber() const
-{
-	return number;
+	this->value = value;
 }
 
 Tree::Tree() {}
 Tree::~Tree() {}
 
-void Node::insertNode(int number)
+Node* Tree::insertInner(int value, Node* node)
 {
-	if (number < this->number) {
-		if (left != NULL) {
-			left->insertNode(number);
-		} else {
-			*left = Node(number);
-		}
-	} else if (number > this->number) {
-		if (right != NULL) {
-			right->insertNode(number);
-		} else {
-			*right = Node(number);
-		}
-	}
-}
-
-void Tree::insertTree(int number)
-{
-	if (root == NULL) {
-		*root = Node(number);
+	if (node == NULL) {
+		node = new Node(value);
+	} else if (value < node->value) {
+		node->left = insertInner(value, node->left);
+	} else if (value > node->value) {
+		node->right = insertInner(value, node->right);
 	} else {
-		root->insertNode(number);
+		std::cout << "Value " << value << " does already exist!" << std::endl;
+	}
+	return node;
+}
+
+void Tree::insert(int value)
+{
+	root = insertInner(value, root);
+}
+
+int Tree::printBalance(Node* node) const
+{
+	if (node == NULL) {
+		return 0;
+	} else {
+		int depthRight = printBalance(node->right);
+		int depthLeft = printBalance(node->left);
+		int bal = depthRight - depthLeft;
+		std::cout << "bal (" << node->value << ") = " << bal << std::endl;
+		return 1 + std::max(depthLeft, depthRight);
 	}
 }
 
-void Tree::printTree() const{
-
+void Tree::printTree() const
+{
+	printBalance(root);
 }
+
