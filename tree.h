@@ -3,14 +3,9 @@
 class Node
 {
 public:
-	Node(int number);
-	~Node();
+	Node(int value);
 	
-	void insertNode(int number);
-	int getNumber() const;
-
-private:
-	int number;
+	int value;
 	Node* left = NULL;
 	Node* right = NULL;
 };
@@ -22,9 +17,11 @@ public:
 	~Tree();
 
 	void printTree() const;
-	void insertTree(int number);
+	void insert(int value);
 
 private:
+	Node* insertInner(int value, Node* node);
 	Node* root = NULL;
+	int printBalance(Node* node) const; 
 };
 
