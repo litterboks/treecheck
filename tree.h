@@ -13,7 +13,6 @@ public:
 class Tree
 {
 public:
-	Tree();
 	~Tree();
 
 	void printTree();
