@@ -28,7 +28,7 @@ void Tree::insert(int value)
 	root = insertInner(value, root);
 }
 
-int Tree::printBalance(Node* node) const
+int Tree::printBalance(Node* node)
 {
 	if (node == NULL) {
 		return 0;
@@ -36,13 +36,19 @@ int Tree::printBalance(Node* node) const
 		int depthRight = printBalance(node->right);
 		int depthLeft = printBalance(node->left);
 		int bal = depthRight - depthLeft;
-		std::cout << "bal (" << node->value << ") = " << bal << std::endl;
+		std::cout << "bal (" << node->value << ") = " << bal;
+		if (!(-1 <= bal && bal <= 1)) {
+			std::cout << " (AVL Violation)";
+			AVLflag=false;
+		}
+		std::cout << std::endl;
 		return 1 + std::max(depthLeft, depthRight);
 	}
 }
 
-void Tree::printTree() const
+void Tree::printTree()
 {
 	printBalance(root);
 }
+
 
