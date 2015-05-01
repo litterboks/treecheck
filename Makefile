@@ -45,11 +45,11 @@ million:
 ###############################
 
 clean:
-	rm -f *.tgz ${EXECUTABLE} test/runner test/million.in
+	rm -f *.tgz ${EXECUTABLE} test/runner inputs/million.in
 	find . -name "*.o" -type f -delete
 
 package: clean 
-	tar -cvf alg3_patzl_if14b048_steinberger_if14b049.tgz *.md *.pdf Makefile *.cpp *.h test inputs
+	tar -cvzf alg3_patzl_if14b048_steinberger_if14b049.tgz *.md *.pdf Makefile *.cpp *.h test inputs
 
 valgrind: all
 	valgrind ./${EXECUTABLE}
