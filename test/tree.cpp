@@ -1,9 +1,3 @@
-/*
- * Universal tests to describe the features that we expect from implementations
- * of hashing functions as described in hash.h
- *
- * Authors: Florian Patzl, Martin Steinberger
- */
 #include "upp11.h"
 #include "../tree.h"
 #include <iostream>
