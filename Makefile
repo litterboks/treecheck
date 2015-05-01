@@ -51,5 +51,9 @@ zip: clean
 valgrind: all
 	valgrind ./${EXECUTABLE}
 
+.PHONY: docs
+docs: design.md 
+	pandoc --latex-engine=xelatex --mathjax -f markdown -o design.pdf design.md
+
 run: all
 	./${EXECUTABLE}
