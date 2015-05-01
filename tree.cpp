@@ -120,4 +120,9 @@ void Tree::printTree()
 	}
 }
 
+bool Tree::isAVL()
+{
+	return AVLflag;
+}
+
 

@@ -17,9 +17,10 @@ public:
 
 	void printTree();
 	void insert(int value);
+	bool isAVL();
 
 private:
-	bool AVLflag = false;
+	bool AVLflag = true;
 	Node* insertInner(int value, Node* node);
 	Node* root = NULL;
 	int printBalance(Node* node);

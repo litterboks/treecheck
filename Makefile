@@ -19,6 +19,21 @@ tree.o: tree.cpp tree.h
 # Tests
 ###############################
 
+test: test/runner
+	test/runner
+
+test-valgrind: test/runner
+	valgrind test/runner
+
+test/runner: test/runner.o test/tree.o tree.o
+	${CC} ${CXXFLAGS} -o test/runner $^
+
+test/runner.o: test/runner.cpp
+	${CC} ${CXXFLAGS} -c test/runner.cpp -o test/runner.o
+
+test/tree.o: test/tree.cpp
+	${CC} ${CXXFLAGS} -c test/tree.cpp -o test/tree.o
+
 million: all
 	seq 1000000 | shuf | ./${EXECUTABLE}
 
