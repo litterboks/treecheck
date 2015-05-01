@@ -31,3 +31,4 @@ treecheck
 test/runner
 *.zip
 inputs/million.in
+*.tgz
