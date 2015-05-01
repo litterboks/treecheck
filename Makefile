@@ -34,15 +34,18 @@ test/runner.o: test/runner.cpp
 test/tree.o: test/tree.cpp
 	${CC} ${CXXFLAGS} -c test/tree.cpp -o test/tree.o
 
-million: all
-	seq 1000000 | shuf | ./${EXECUTABLE}
+inputs: million all
+	for f in inputs/*.in; do ./${EXECUTABLE} $$f; done
+
+million: 
+	seq 1000000 | shuf > inputs/million.in
 
 ############################### 
 # Misc
 ###############################
 
 clean:
-	rm -f *.zip ${EXECUTABLE} test/runner
+	rm -f *.zip ${EXECUTABLE} test/runner test/million.in
 	find . -name "*.o" -type f -delete
 
 zip: clean 
