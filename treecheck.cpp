@@ -1,22 +1,34 @@
 #include <iostream>
+#include <fstream>
 #include "tree.h"
 
-int main()
+int main(int argc, char *argv[])
 {
-	Tree t;
-	//TODO: read from file instead
+	if (argc != 2) {
+		std::cout << "Need exactly one filename!" << std::endl;
+	} else {
+		std::ifstream file;
 
-	int in;
-	while (true) {
-		std::cin >> in;
-		if (std::cin.fail()) {
-			break;
+		file.open(argv[1]);
+		if (file.fail()) {
+			std::cout << "File does not exist!" << std::endl;
+			return 1;
 		}
 
-		t.insert(in);
-	}
+		Tree t;
 
-	t.printTree();
+		int in;
+		while (true) {
+			file >> in;
+			if (file.fail()) {
+				break;
+			}
+
+			t.insert(in);
+		}
+
+		t.printTree();
+	}
 
 	return 0;
 }
